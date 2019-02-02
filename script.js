@@ -59,20 +59,88 @@ var movies = [
   }
 ];
 
-var moviesElements = movies.map(function(movie) {
-  return React.createElement("li", {key: movie.id},
-    React.createElement("h2", {}, movie.title),
-    React.createElement("p", {}, movie.desc),
-    React.createElement("p", {}, movie.premiere),
-    React.createElement("img", {src: movie.img},)
-  );
+var Movie = React.createClass({ // stworzenie klasy
+  propTypes: {
+    movie: React.PropTypes.object.isRequired,
+  },
+
+  render: function() {
+    return (
+      React.createElement("li", {}, 
+        React.createElement(MovieTitle, {title: movies.title}),
+        React.createElement(MovieImage, {image: movies.image}),
+        React.createElement(MovieDescription, {title: movies.desc})
+      )
+    )
+  },
 });
 
-var element = 
-  React.createElement("div", {},
-    React.createElement("h1", {}, "Lista filmów"),
-    React.createElement("ul", {}, moviesElements)
-  );
+var MovieTitle = React.createClass({
+  propTypes: {
+    text: React.PropTypes.string.isRequired,
+  },
 
+  render: function() {
+    return (
+      React.createElement("div", {}, // czy ten "div" jest potrzeby jeśli wszystkie elementy tworzone są w "li" ?
+        React.createElement("h2", {}, this.props.text)
+      )
+    )
+  },
+});
+
+var MovieDescription = React.createClass({
+  propTypes: {
+    text: React.PropTypes.string.isRequired,
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {}, // czy tu też ma być "div" skoro jest już jeden
+        React.createElement("p", {}, this.props.text)
+      )
+    )
+  },
+});
+
+var MovieImage = React.createClass({
+  propTypes: {
+    image: React.PropTypes.object.isRequired,
+  },
+
+  render: function() {
+    return (
+      React.createElement("div", {},
+        React.createElement("img", {src: this.props.image})
+      )
+    )
+  },
+});
+
+
+
+var element = React.createElement(Movie);
 ReactDOM.render(element, document.getElementById("app"));
+
+
+
+
+
+
+
+// var moviesElements = movies.map(function(movie) {
+//   return React.createElement("li", {key: movie.id},
+//     React.createElement("h2", {}, movie.title),
+//     React.createElement("p", {}, movie.desc),
+//     React.createElement("p", {}, movie.premiere),
+//     React.createElement("img", {src: movie.img},)
+//   );
+// });
+
+// var element = 
+//   React.createElement("div", {},
+//     React.createElement("h1", {}, "Lista filmów"),
+//     React.createElement("ul", {}, moviesElements)
+//   );
+
 
