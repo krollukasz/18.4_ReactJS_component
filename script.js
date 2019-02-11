@@ -67,9 +67,9 @@ var Movie = React.createClass({ // stworzenie klasy
   render: function() {
     return (
       React.createElement("li", {}, 
-        React.createElement(MovieTitle, {title: movies.title}),
-        React.createElement(MovieImage, {image: movies.image}),
-        React.createElement(MovieDescription, {title: movies.desc})
+        React.createElement(MovieTitle, {title: this.props.movie.title}),
+        React.createElement(MovieImage, {image: this.props.movie.img}),
+        React.createElement(MovieDescription, {title: this.props.movie.desc})
       )
     )
   },
@@ -134,24 +134,3 @@ var element = React.createElement("div", {},
 );
 
 ReactDOM.render(element, document.getElementById("app"));
-
-
-
-// var element = React.createElement(Movies, {movies: movies});
-// ReactDOM.render(element, document.getElementById("app"));
-
-
-//     React.createElement("h2", {}, movie.title),
-//     React.createElement("p", {}, movie.desc),
-//     React.createElement("p", {}, movie.premiere),
-//     React.createElement("img", {src: movie.img},)
-//   );
-// });
-
-// var element = 
-//   React.createElement("div", {},
-//     React.createElement("h1", {}, "Lista filmów"),
-//     React.createElement("ul", {}, moviesElements)
-//   );
-
-
